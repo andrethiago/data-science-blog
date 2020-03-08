@@ -1,0 +1,8 @@
+[submodule "pelican-plugins"]
+	path = pelican-plugins
+	url = https://github.com/getpelican/pelican-plugins
+
+[submodule "output"]
+	path = output
+	url = https://github.com/andrethiago/andrethiago.github.io.git
+    ignore = all
