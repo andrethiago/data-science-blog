@@ -35,7 +35,7 @@ DEFAULT_PAGINATION = 10
 #RELATIVE_URLS = True
 
 # Theme
-THEME = 'themes/attila'
+THEME = 'themes/pelican-blueidea'
 
 # Path to the folder containing the plugins
 PLUGIN_PATHS = ['pelican-plugins']
