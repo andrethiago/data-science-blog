@@ -1,128 +1,3499 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <title>Robô Aprendiz - classificador</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
 
-
-  <title>Robô Aprendiz - Tag classificador</title>
-
-
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="referrer" content="origin" />
-  <meta name="generator" content="Pelican" />
-<link href="/" rel="canonical" />
-  <!-- Feed -->
-
-  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" />
-
-  <!-- Code highlight color scheme -->
-      <link href="/theme/css/code_blocks/github.css" rel="stylesheet">
-
-
-  <!-- Custom fonts -->
-  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 </head>
-<!-- TODO : Body class -->
-<body class="home-template">
 
-<nav id="menu">
-  <a class="close-button">Close</a>
-  <div class="nav-wrapper">
-    <p class="nav-label">Menu</p>
-    <ul>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Robô Aprendiz</a></h1>
+                <nav><ul>
+                    <li><a href="/category/machine-learning.html">machine learning</a></li>
+                </ul>
+                </nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/meu-primeiro-classificador.html">Meu Primeiro Classificador</a></h1>
+<footer class="post-info">
+        <span>dom 08 março 2020</span>
+<span>| tags: <a href="/tag/kaggle.html">kaggle</a><a href="/tag/classificador.html">classificador</a><a href="/tag/primeiros-passos.html">primeiros-passos</a></span>
+</footer><!-- /.post-info --><style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
+.ansibold {
+  font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
+  border-color: #ababab;
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
+}
+@media print {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
+  border: 0;
+  border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+div.output_area .mglyph > img {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 1px 0 1px 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
 
 
-    </ul>
-  </div>
-</nav>
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header id="blog-header" >
-      <div class="inner">
-        <nav id="navigation">
-            <span id="home-button" class="nav-button">
-                <a class="home-button" href="/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
-            </span>
-          <span id="menu-button" class="nav-button">
-            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
-          </span>
-        </nav>
-        <h1 class="post-title">Tag classificador</h1>
-        <span class="blog-description">Posts: 1</span>
-      </div>
-    </header>
 
-  <section id="wrapper">
-    <a class="hidden-close"></a>
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
 
-<div id="index" class="container">
-  <main class="content" role="main">
-    <div class="extra-pagination">
-<nav class="pagination" role="pagination">
-  <div class="inner">
-    <span class="pagination-info">Page 1 / 1</span>
-    <div class="clear"></div>
-  </div>
-</nav>
-    </div>
 
-        <article class="post">
-        <div class="inner">
-            <header class="post-header">
-                <h2 class="post-title"><a href="/meu-primeiro-classificador.html" rel="bookmark" title="Permalink to Meu Primeiro Classificador">Meu Primeiro Classificador</a>
-                </h2>
-                <span class="post-meta">
-                        <a href="/author/andre-thiago.html">André Thiago</a>
-                     | <time datetime="dom 08 março 2020">dom 08 março 2020</time>
-                </span>
-                <div class="clear"></div>
-            </header>
-                <section class="post-excerpt">
-                    <p>
-                        Um sumário de teste.
-                    </p>
-                </section>
-            </div>
-        </article>
 
-<nav class="pagination" role="pagination">
-  <div class="inner">
-    <span class="pagination-info">Page 1 / 1</span>
-    <div class="clear"></div>
-  </div>
-</nav>
-  </main>
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+
+
+
+.rendered_html pre,
+
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introdu&#231;&#227;o">Introdu&#231;&#227;o<a class="anchor-link" href="#Introdu&#231;&#227;o">&#182;</a></h1><p>Esse caderno explora como criar um classificador básico utilizando o <em>dataset</em> <a href="https://www.kaggle.com/c/titanic">Titanic</a>. Esse é um problema de classificação simples, binária, onde devemos prever se um passageiro irá ou não sobreviver (variável <em>Survived</em>), dado um conjunto de características (<em>features</em>) que ele possui (idade, sexo, porto de embarque etc.).</p>
+<p>Nessa implementação vamos utilizar a biblioteca scikit-learn, com o classificador <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">RandomForest</a>.</p>
+<p>A ideia, nesse caderno, é mostrar, numa abordagem top-down, como é rápida a criação de um classificador que prevê um resultado de um problema, sem muito conhecimento prévio, e já obtendo resultados minimamente aceitáveis.</p>
+<p>Durante a solução do problemas, serão apresentados conceitos relacionados a implementação de um classificador em <em>Machine Learning</em>:</p>
+<ul>
+<li>exploração dos dados;</li>
+<li>pré-processamento de dados</li>
+<li>importância da separação dos <em>sets</em> de treino e validação;</li>
+<li><em>overfitting</em>;</li>
+<li>dentre outros.</li>
+</ul>
+<p>Vamos lá!</p>
+
 </div>
-      <!-- TODO : Body class -->
-    <div id="body-class" style="display: none;" class=""></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bibliotecas-Utilizadas">Bibliotecas Utilizadas<a class="anchor-link" href="#Bibliotecas-Utilizadas">&#182;</a></h1><p>O código foi implementado em Python 3, utilizando as seguintes bibliotecas:</p>
+<ul>
+<li>pandas</li>
+<li>scikit-learn</li>
+</ul>
 
-    <footer id="footer">
-      <div class="inner">
-        <section class="credits">
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># os dados estão na pasta data</span>
+
+<span class="n">PATH</span> <span class="o">=</span> <span class="s2">&quot;data/&quot;</span>
+<span class="o">!</span>ls <span class="o">{</span>PATH<span class="o">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 
-          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
-          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
-        </section>
-      </div>
-    </footer>
-  </section>
+<div class="output_area">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="/theme/js/script.js"></script>
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>test.csv  train.csv
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Iniciando-o-pr&#233;-processamento">Iniciando o pr&#233;-processamento<a class="anchor-link" href="#Iniciando-o-pr&#233;-processamento">&#182;</a></h1><p>Vamos ler os arquivos de treino e de teste. Ambos são arquivos <em>.csv</em>; geralmente, o Kaggle disponibiliza em seus problemas os arquivos de treino e teste separados, de forma que o modelo seja treinado e melhorado com os dados de treino e validado junto aos dados de teste.</p>
+<p>Vamos utilizar um <a href="http://pandas.pydata.org/pandas-docs/version/0.19/generated/pandas.DataFrame.html">DataFrame</a> do <a href="https://pandas.pydata.org/">pandas</a>. No código abaixo, a saída do arquivo é direcionada para dois <em>DataFrames</em> distintos: df_train e df_test.</p>
+<p><strong>Nota</strong>: Um <em>DataFrame</em> é uma estrutura de dados bidimensional, com linhas e colunas. Para efeitos de comparação, pense em <em>DataFrame</em> como uma tabela de um banco de dados relacional ou uma planilha.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{PATH}</span><span class="s1">train.csv&#39;</span><span class="p">)</span>
+<span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{PATH}</span><span class="s1">test.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Para facilitar o pré-processamento, vamos juntar os 2 <em>DataFrames</em> em um só. Isso costuma ser uma boa prática, pois, temos as seguintes vantagens:</p>
+<ul>
+<li>consistência na criação de variáveis categóricas (se todas as categorias não estiverem presentes nos dois <em>sets</em>, elas podem ser codificadas de forma diferente se isso for feito em duas operações em separado) - isso vai ficar mais claro adiante;</li>
+<li>remoção de colunas: às vezes, optamos por remover uma coluna por algum motivo; ao retirar do set de treino, precisamos também remover do set de teste (ambos os sets precisam ter o mesmo conjunto de <em>features</em>);</li>
+<li>remoção/tratamento uniforme de dados nulos;</li>
+</ul>
+<p>Portanto, juntar os 2 sets de dados uniformiza e padroniza o tratamento de dados, de forma que o modelo criado lide de forma consistente nos dois casos.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_raw</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_test</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_test</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_raw</span><span class="p">)</span> <span class="c1"># listando o tamanho de cada um dos datasets</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(891, 418, 1309)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Vamos listar as colunas (<em>features</em>) presente em nosso <em>data set</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_raw</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;PassengerId&#39;, &#39;Survived&#39;, &#39;Pclass&#39;, &#39;Name&#39;, &#39;Sex&#39;, &#39;Age&#39;, &#39;SibSp&#39;,
+       &#39;Parch&#39;, &#39;Ticket&#39;, &#39;Fare&#39;, &#39;Cabin&#39;, &#39;Embarked&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Vis&#227;o-geral-dos-dos-dados">Vis&#227;o geral dos dos dados<a class="anchor-link" href="#Vis&#227;o-geral-dos-dos-dados">&#182;</a></h3><p>Vamos dar uma olhada geral nos dados que temos.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_raw</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>659</th>
+      <td>660</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Newell, Mr. Arthur Webster</td>
+      <td>male</td>
+      <td>58.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>35273</td>
+      <td>113.2750</td>
+      <td>D48</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>632</th>
+      <td>633</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>Stahelin-Maeglin, Dr. Max</td>
+      <td>male</td>
+      <td>32.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13214</td>
+      <td>30.5000</td>
+      <td>B50</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>671</th>
+      <td>672</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Davidson, Mr. Thornton</td>
+      <td>male</td>
+      <td>31.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>F.C. 12750</td>
+      <td>52.0000</td>
+      <td>B71</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>653</th>
+      <td>654</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>O'Leary, Miss. Hanora "Norah"</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330919</td>
+      <td>7.8292</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>445</th>
+      <td>446</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>Dodge, Master. Washington</td>
+      <td>male</td>
+      <td>4.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>33638</td>
+      <td>81.8583</td>
+      <td>A34</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>806</th>
+      <td>807</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Andrews, Mr. Thomas Jr</td>
+      <td>male</td>
+      <td>39.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>112050</td>
+      <td>0.0000</td>
+      <td>A36</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>178</th>
+      <td>179</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>Hale, Mr. Reginald</td>
+      <td>male</td>
+      <td>30.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>250653</td>
+      <td>13.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>994</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>Foley, Mr. William</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>365235</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>812</th>
+      <td>813</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>Slemen, Mr. Richard James</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>28206</td>
+      <td>10.5000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>296</th>
+      <td>297</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>Hanna, Mr. Mansour</td>
+      <td>male</td>
+      <td>23.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2693</td>
+      <td>7.2292</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A listagem acima é uma exibição aleatória de 10 linhas (<em>sample(10)</em>); é interessante porque nos permite ter uma visão geral dos tipos dos dados que temos (numéricos, categóricos, textuais), presença de valores nulos etc.</p>
+<p>Podemos visualizar, também, um <strong>sumário estatístico dos dados</strong>. Para isso, usamos o método <em>describe()</em> do <em>DataFrame</em>. Esse método nos retorna um outro DataFrame com diversas estatísticas: número de entradas, média, desvio-padrão, valor mínimo, valor máximo e percentis.</p>
+<p>Isso é uma forma de ter uma visão geral dos dados que temos.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_raw</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1309.000000</td>
+      <td>891.000000</td>
+      <td>1309.000000</td>
+      <td>1046.000000</td>
+      <td>1309.000000</td>
+      <td>1309.000000</td>
+      <td>1308.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>655.000000</td>
+      <td>0.383838</td>
+      <td>2.294882</td>
+      <td>29.881138</td>
+      <td>0.498854</td>
+      <td>0.385027</td>
+      <td>33.295479</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>378.020061</td>
+      <td>0.486592</td>
+      <td>0.837836</td>
+      <td>14.413493</td>
+      <td>1.041658</td>
+      <td>0.865560</td>
+      <td>51.758668</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.170000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>328.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+      <td>21.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>7.895800</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>655.000000</td>
+      <td>0.000000</td>
+      <td>3.000000</td>
+      <td>28.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>14.454200</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>982.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>39.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>31.275000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1309.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>80.000000</td>
+      <td>8.000000</td>
+      <td>9.000000</td>
+      <td>512.329200</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Nota</strong>: colunas com valores não numéricos são excluídas dessa visualização (veja que a coluna Name não aparece, por exemplo).</p>
+<p>Vamos listar as <em>features</em> com valores nulos.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">df_raw</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df_raw</span><span class="p">))</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Cabin          0.774637
+Survived       0.319328
+Age            0.200917
+Embarked       0.001528
+Fare           0.000764
+Ticket         0.000000
+Parch          0.000000
+SibSp          0.000000
+Sex            0.000000
+Name           0.000000
+Pclass         0.000000
+PassengerId    0.000000
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dessas visualizações, podemos tirar algumas conclusões:</p>
+<ul>
+<li>As colunas <em>Age</em>, <em>Cabin</em>, <em>Embarked</em> possuem valores nulos (<em>Survived</em> é a nossa variável dependente; esses valores nulos referem-se às entradas do dataset de teste);</li>
+<li>A coluna <em>Sex</em>, <em>Ticket</em> e <em>Embarked</em> devem ser categorizadas - os algoritmos de Machine Learning precisam de entradas do tipo numérico; não sabem lidar com texto;</li>
+<li>As colunas <em>Name</em>  e <em>PassengerId</em>, em princípio, não fazem sentido. Provavelmente nossa variável dependente, <em>Survived</em>, não se relaciona com elas. Logo, podemos removê-las.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Tratando-os-nulos">Tratando os nulos<a class="anchor-link" href="#Tratando-os-nulos">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A maioria das bibliotecas de <em>Machine Learning</em>, incluindo a scikit-learn, disparam erros ao usar dados com valores nulos. Por isso precisamos tratar esses valores. Temos algumas alternativas:</p>
+<ul>
+<li>remover as linhas com valores nulos (essa não costuma ser uma boa ideia, pois, estamos jogando fora linhas que possuem outras informações por causa de valores nulos em determinadas colunas);</li>
+<li>remover as colunas que possuem valores nulos (sob pena de perda de informação, caso elas sejam úteis);</li>
+<li><em>Imputation</em>: preencher os valores nulos com algum valor; por exemplo, podemos substituir os nulos presentes em uma coluna pela média, mediana ou moda dos valores da coluna; esse procedimento nos dá um melhor resultado do que a simples remoção da coluna;</li>
+</ul>
+<p>Vamos usar as duas últimas alternativas acima.</p>
+<p><strong>Nota</strong>: dado ao alto índice de valores nulos (77%), vamos optar por remover a coluna <em>Cabin</em>;</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span> <span class="o">=</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_copy</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Cabin&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df_copy</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;PassengerId&#39;, &#39;Survived&#39;, &#39;Pclass&#39;, &#39;Name&#39;, &#39;Sex&#39;, &#39;Age&#39;, &#39;SibSp&#39;,
+       &#39;Parch&#39;, &#39;Ticket&#39;, &#39;Fare&#39;, &#39;Embarked&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Uma boa prática, antes de fazer os tratamentos necessários nos dados, é criar uma cópia dos dados originais, de forma que estes fiquem intactos. Foi isso que fizemos ao criar a variável <em>df_copy</em>.</p>
+<p>O método <em>drop()</em> permite-nos remover colunas (quando axis=1; se axis=0, estamos removendo linhas). Via de regra, o método <em>drop()</em> retorna um novo DataFrame sem as colunas que foram removidas; quando usamos <em>inplace=True</em>, <em>drop()</em> remove as colunas do próprio DataFrame, sem a necessidade de retornar um outro DataFrame.</p>
+<p>Para as colunas <em>Age</em> e <em>Fare</em>, vamos colocar no lugar dos valores nulos a média das idades presentes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">age_not_null</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
+<span class="n">fare_not_null</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span><span class="p">][</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span>
+<span class="n">mean_age</span> <span class="o">=</span> <span class="n">age_not_null</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_fare</span> <span class="o">=</span> <span class="n">fare_not_null</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df_copy</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Age&#39;</span><span class="p">:</span><span class="n">mean_age</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span> <span class="p">:</span> <span class="n">mean_fare</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># substituímos os nulos pela média</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Para a coluna <em>Embarked</em>, do tipo categórica, podemos usar a moda.</p>
+<p>Vamos visualizar os dados presentes nessa coluna.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Embarked&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f29e60d4278&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>O valor mais comun, a moda, é o valor 'S'. Vamos substituir por este valor os valores nulos.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Embarked&#39;</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Vamos ver agora os valores nulos que temos.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">df_copy</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df_copy</span><span class="p">))</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Survived       0.319328
+Embarked       0.000000
+Fare           0.000000
+Ticket         0.000000
+Parch          0.000000
+SibSp          0.000000
+Age            0.000000
+Sex            0.000000
+Name           0.000000
+Pclass         0.000000
+PassengerId    0.000000
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pronto. Tratamos todos os nulos. Podemos prosseguir com o pré-processamento de dados.</p>
+<p><strong>Nota</strong>: lembre-se que a coluna <em>Survived</em>, que é a nossa variável alvo, tem valores nulos provenientes dos dados do arquivo de teste - é o que vamos prever.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Lidando-com-vari&#225;veis-categ&#243;ricas">Lidando com vari&#225;veis categ&#243;ricas<a class="anchor-link" href="#Lidando-com-vari&#225;veis-categ&#243;ricas">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Variáveis categóricas são aquelas cujos valores são limitados a um conjunto de valores. Um exemplo de variável categórica em nosso conjunto de dados é <em>Embarked</em>, que representa o porto de embarque; os seus valores são 'S', 'C' e 'Q'.</p>
+<p>Assim como no caso dos valores nulos, passar variáveis categóricas para modelos de <em>Machine Learning</em> também resultam em erros. Por isso precisamos tratar esses valores.</p>
+<p>A forma mais popular de tratamento de variáveis categóricas é o <strong>One-Hot Encoding</strong>.</p>
+<p><strong>One-Hot Encoding</strong> cria novas colunas, binárias, indicando a presença ou ausência de cada um dos valores categóricos no conjunto de dados original. É uma boa técnica quando o conjunto de valores categóricos não é muito grande - caso contrário, vamos ter uma explosão de colunas.</p>
+<p>Primeiramente, vamos visualizar os tipos de dados de cada uma das nossas <em>features</em> (colunas).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>PassengerId      int64
+Survived       float64
+Pclass           int64
+Name            object
+Sex             object
+Age            float64
+SibSp            int64
+Parch            int64
+Ticket          object
+Fare           float64
+Embarked        object
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As variáveis do tipo <strong>object</strong> indicam que elas possuem texto. Essas, em geral, são colunas que devem passar pelo processo de <em>encoding</em>.</p>
+<p>Vamos verificar a quantidade de valores únicos em cada uma dessas colunas <em>object</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unique_values</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
+        <span class="n">unique_values</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_copy</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+<span class="n">unique_values</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;Name&#39;: 1307, &#39;Sex&#39;: 2, &#39;Ticket&#39;: 929, &#39;Embarked&#39;: 3}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Se fizemos <em>one-hot encoding</em> diretamente, as colunas <em>Name</em> e <em>Ticket</em> vão gerar diversas colunas binárias. Logo, não é uma boa ideia usar o encoding nelas.</p>
+<p>Primeiramente, vamos ignorar a coluna <em>Name</em>. Vamos fazer isso porque o hot-encoding dela geraria uma explosão de colunas; e, também, porque conforme dissemos anteriomente, acreditamos que ela não deve estar relacionada com a variável alvo, não devendo ter, portanto, importância para o modelo (o nome da pessoa não deve influenciar se ela sobrevive ou não).</p>
+<p>Depois, vamos categorizar as variáveis <em>Ticket</em> e <em>Sex</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_copy</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;PassengerId&#39;, &#39;Survived&#39;, &#39;Pclass&#39;, &#39;Sex&#39;, &#39;Age&#39;, &#39;SibSp&#39;, &#39;Parch&#39;,
+       &#39;Ticket&#39;, &#39;Fare&#39;, &#39;Embarked&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Transformamos texto em categoria</span>
+<span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Ticket&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Ticket&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="c1"># Substitui os valores pelos códigos de cada categoria</span>
+<span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Ticket&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Ticket&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+<span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+
+
+<span class="n">df_copy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>359</th>
+      <td>360</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>29.881138</td>
+      <td>0</td>
+      <td>0</td>
+      <td>391</td>
+      <td>7.8792</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>142</th>
+      <td>143</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>24.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>913</td>
+      <td>15.8500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>250</th>
+      <td>1142</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0.920000</td>
+      <td>1</td>
+      <td>2</td>
+      <td>768</td>
+      <td>27.7500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>591</th>
+      <td>592</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>52.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>627</td>
+      <td>78.2667</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>1007</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>1</td>
+      <td>18.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>275</td>
+      <td>14.4542</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>14.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>174</td>
+      <td>30.0708</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>1051</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>0</td>
+      <td>26.000000</td>
+      <td>0</td>
+      <td>2</td>
+      <td>883</td>
+      <td>13.7750</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>146</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>19.000000</td>
+      <td>1</td>
+      <td>1</td>
+      <td>763</td>
+      <td>36.7500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>785</th>
+      <td>786</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>25.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>651</td>
+      <td>7.2500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>484</th>
+      <td>485</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>25.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>82</td>
+      <td>91.0792</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Como podemos ver, as variáveis <em>Ticket</em> e <em>Sex</em> tiveram seus valores substituídos pelos códigos numéricos correspondentes.</p>
+<p>Agora, finalmente, vamos aplicar o one-hot encoding no DataFrame.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df_copy</span><span class="p">)</span>
+<span class="n">df_copy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>387</th>
+      <td>1279</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>1</td>
+      <td>57.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>195</td>
+      <td>13.0000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>245</th>
+      <td>1137</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>41.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>110</td>
+      <td>51.8625</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>741</th>
+      <td>742</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>36.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>118</td>
+      <td>78.8500</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>1241</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>0</td>
+      <td>31.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>781</td>
+      <td>21.0000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>189</th>
+      <td>1081</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>1</td>
+      <td>40.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>306</td>
+      <td>13.0000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>415</th>
+      <td>1307</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>1</td>
+      <td>38.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>872</td>
+      <td>7.2500</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>380</th>
+      <td>381</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>42.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>833</td>
+      <td>227.5250</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>150</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>42.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>194</td>
+      <td>13.0000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>595</th>
+      <td>596</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>36.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>425</td>
+      <td>24.1500</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>437</th>
+      <td>438</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>24.0</td>
+      <td>2</td>
+      <td>3</td>
+      <td>321</td>
+      <td>18.7500</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A função <em>get_dummies</em> do pandas permite fazer <em>one-hot encoding</em>, convertendo variáveis categóricas em variáveis indicadores (<em>dummy</em>).</p>
+<p>Observe, da saída resultante de sample(), que foram criadas variáveis adicionais derivadas de <em>Embarked</em>:</p>
+<ul>
+<li><em>Embarked_C</em>: indicando que o valor original era 'C';</li>
+<li><em>Embarked_Q</em>: indicando que o valor original era 'Q';</li>
+<li><em>Embarked_S</em>: indicando que o valor original era 'S';</li>
+</ul>
+<p>Em cada linha, somente uma dessas variáveis terá seu valor igual a 1, com as outras tendo o valor 0.</p>
+<p>Agora, com todas as variáveis tendo valores numéricos, podemos partir para o treino do modelo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Treinando-um-modelo">Treinando um modelo<a class="anchor-link" href="#Treinando-um-modelo">&#182;</a></h1><p>Agora podemos treinar o modelo. Vamos, primeiramente, separar novamente os data sets de treino e teste, conforme os arquivos originalmente nos fornecidos pelo Kaggle.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_train</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">891</span><span class="p">]</span> <span class="c1"># o tamanho original do set de treino é 891</span>
+<span class="n">df_test</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="mi">891</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A partir de agora, vamos utilizar o set de treino para fazer o treino do nosso modelo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Definindo-as-features">Definindo as features<a class="anchor-link" href="#Definindo-as-features">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;PassengerId&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_train</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cols_to_remove</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;Pclass&#39;, &#39;Sex&#39;, &#39;Age&#39;, &#39;SibSp&#39;, &#39;Parch&#39;, &#39;Ticket&#39;, &#39;Fare&#39;, &#39;Embarked_C&#39;, &#39;Embarked_Q&#39;, &#39;Embarked_S&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>No trecho anterior removemos as variáveis <em>PassengerId</em> (pelo fato de acreditarmos que ela não se relaciona com a nossa variável alvo - é apenas um sequencial numérico) e a variável alvo <em>Survived</em>. O objetivo é selecionar as <em>features</em> que vamos utilizar para treinar nosso modelo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Usando-o-RandomForestClassifier">Usando o RandomForestClassifier<a class="anchor-link" href="#Usando-o-RandomForestClassifier">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># usando n_estimators = 100, para suprimir warning</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>RandomForestClassifier(bootstrap=True, class_weight=None, criterion=&#39;gini&#39;,
+            max_depth=None, max_features=&#39;auto&#39;, max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=100, n_jobs=None,
+            oob_score=False, random_state=42, verbose=0, warm_start=False)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>No trecho anterior, criamos um classificador do tipo RandomForest e em seguida chamamos o seu método <em>fit</em>, para fazer o treino do modelo - a construção das árvores, neste caso.</p>
+<p>O primeiro argumento de <em>fit</em> é a entrada para o treino (X); o segundo argumento é a variável alvo (y).</p>
+<p>Agora vamos fazer a previsão do resultado.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A função <em>predict()</em> nos retorna os valores que queremos prever, neste caso, o valor de <em>Survived</em>.</p>
+<p>Esse é o padrão para treino de modelos utilizando scikit-learn: chamar <em>fit</em> para fazer o ajuste e depois <em>predict</em> para fazer a previsão.</p>
+<p>Vamos ver a acurácia das nossas previsões no dataset de treino.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">],</span> <span class="n">train_predictions</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.9988776655443322</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Usamos como métrica a acurácia - essa é a métrica recomendada pelo Kaggle para esse problema. Fizemos uso do <em>accuracy_score</em> do scikit-learn; o seu primeiro argumento são os valores reais; o segundo argumento são os valores previstos.</p>
+<p>Nesse caso, o modelo está conseguindo acertar 99% das previsões.</p>
+<p>O que fizemos até agora nos garante que o nosso modelo tem um ótimo desempenho nos dados conhecidos,  o conjunto de treino - quase 100%. No entanto, precisamos garantir que o modelo também se comporte bem para dados que ele ainda não conhece; em outras palavras, queremos um modelo que generalize bem para novos dados que lhe sejam apresentados - evitar o <strong>overfitting</strong>.</p>
+<p>Para avaliar quão bom é o desempenho do modelo treinado em dados desconhecidos, vamos separar o <em>dataset</em> de treino em 2 outros <em>datasets</em> separados: treino e teste.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="train_test_split:-Criando-os-conjuntos-de-treino-e-teste">train_test_split: Criando os conjuntos de treino e teste<a class="anchor-link" href="#train_test_split:-Criando-os-conjuntos-de-treino-e-teste">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">],</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
+<span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>((712, 10), (179, 10), (712,), (179,))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fizemos uso da função <em>train_test_split</em> do scikit-learn para separar, aleatoriamente, o dataset de treino df_train em outros dois datasets independentes: X_train e X_test.</p>
+<p>Agora, vamos treinar o modelo utilizando o X_train e avaliá-lo utilizando o X_test.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)),</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(0.9985955056179775, 0.8044692737430168)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Como vemos, o desempenho no set de treino é bem maior do que no set de teste: 99% vs 80% - embora precisão de 80% seja um resultado razoável. O que está ocorrendo aqui é o <strong>overfitting</strong>.</p>
+<p>O <strong>overfitting</strong> ocorre quando o modelo captura bem as características presentes no set de treinamento, mas falha ao generalizar seu comportamento para dados que ele desconhece - fazendo uma analogia, é como se ele decorasse as características existentes, em vez de aprendê-la.</p>
+<p>Há diversas formas de tratar o overfitting, como melhora de hiperparâmetros, melhor tratamento de dados, etc. Não vamos entrar nesse tópico, para não fugir do escopo desse caderno, que é a criação de um classificador simples e rápido.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Verificando-se-o-classificador-criado-&#233;-bom">Verificando se o classificador criado &#233; bom<a class="anchor-link" href="#Verificando-se-o-classificador-criado-&#233;-bom">&#182;</a></h3><p>Vimos que o classificador tem uma acurácia de 80% no dataset de teste. 80%, para a maioria dos problemas, parece ser um bom resultado. Mas quão bom é esse valor?</p>
+<p>Vamos comparar o nosso classificador com um classificador que <em>dummy</em>, isto é, um classificador que sempre prevê o mesmo valor (por exemplo, ele sempre "chuta" que o passageiro vai morrer). Esperamos que o nosso classificador seja melhor que esse, caso contrário, não faz sentido utilizá-lo.</p>
+<p>Vamos dar uma olhada nos nossos dados.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f29d9b77240&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Vamos fazer um classificador que, independentemente dos dados, sempre chuta que o passageiro vai sobreviver.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+
+<span class="c1"># cria um classificador que faz previsões baseados na classe mais frequente</span>
+<span class="n">dummy</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)</span>
+<span class="n">dummy</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">dummy</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)),</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">dummy</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(0.6235955056179775, 0.5865921787709497)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Conforme podemos ver, a acurácia do classificador que sempre prevê o mesmo valor, é de 58.6% no dataset de treino. Logo, o nosso classificador baseado em RandomForest está bem melhor que esse.</p>
+<p>Vamos fazer a análise final, que seria a submissão dos resultados para o Kaggle, baseado no arquivo com os dados de testes que nos foi fornecido (test.csv).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Resultado-junto-ao-arquivo-de-teste">Resultado junto ao arquivo de teste<a class="anchor-link" href="#Resultado-junto-ao-arquivo-de-teste">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">output_predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_test</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+<span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">output_predictions</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/andrethiago/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_ouput</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span> <span class="s1">&#39;PassengerId&#39;</span><span class="p">:</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;PassengerId&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;Survived&#39;</span><span class="p">:</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="p">},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_ouput</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>892</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>893</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>894</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>895</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>896</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>897</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>898</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>899</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>900</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>901</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>902</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>903</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>904</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>905</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>906</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>907</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>908</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>909</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>910</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>911</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>912</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>913</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>914</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>915</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>916</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>917</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>918</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>919</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>920</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>921</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>388</th>
+      <td>1280</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>389</th>
+      <td>1281</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>390</th>
+      <td>1282</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>391</th>
+      <td>1283</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>392</th>
+      <td>1284</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>393</th>
+      <td>1285</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>394</th>
+      <td>1286</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>395</th>
+      <td>1287</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>396</th>
+      <td>1288</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>1289</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>1290</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>399</th>
+      <td>1291</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>400</th>
+      <td>1292</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>401</th>
+      <td>1293</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>402</th>
+      <td>1294</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>403</th>
+      <td>1295</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>404</th>
+      <td>1296</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>405</th>
+      <td>1297</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>406</th>
+      <td>1298</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>407</th>
+      <td>1299</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>408</th>
+      <td>1300</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>409</th>
+      <td>1301</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>410</th>
+      <td>1302</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>411</th>
+      <td>1303</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>412</th>
+      <td>1304</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>413</th>
+      <td>1305</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>414</th>
+      <td>1306</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>415</th>
+      <td>1307</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>416</th>
+      <td>1308</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>417</th>
+      <td>1309</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>418 rows × 2 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+            </ol><!-- /#posts-list -->
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
+        </footer><!-- /#contentinfo -->
 
 </body>
 </html>
