@@ -7,7 +7,7 @@ SITENAME = 'Robô Aprendiz'
 SITETITLE = 'Robô Aprendiz'
 SITESUBTITLE = 'Aprendizagem de máquina com técnicas de IA'
 SITEDESCRIPTION = SITETITLE + ' - ' + SITESUBTITLE
-SITEURL = 'http://localhost:8000'
+SITEURL = ''
 SITELOGO = SITEURL + '/images/artificial-intelligence.png'
 
 PATH = 'content'
