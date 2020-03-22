@@ -1,1152 +1,115 @@
+
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt_br">
 <head>
-        <meta charset="utf-8" />
-        <title>Meu Primeiro Classificador</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/solid.css">
+
+
+
+
+
+
+
+<meta name="author" content="André Thiago" />
+<meta name="description" content="Um sumário de teste." />
+<meta name="keywords" content="kaggle, classificador, primeiros-passos">
+
+
+<meta property="og:site_name" content="Robô Aprendiz"/>
+<meta property="og:title" content="Meu Primeiro Classificador"/>
+<meta property="og:description" content="Um sumário de teste."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/meu-primeiro-classificador.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-03-22 12:00:00-03:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/andre-thiago.html">
+<meta property="article:section" content="machine learning"/>
+<meta property="article:tag" content="kaggle"/>
+<meta property="article:tag" content="classificador"/>
+<meta property="article:tag" content="primeiros-passos"/>
+<meta property="og:image" content="http://localhost:8000/images/artificial-intelligence.png">
+
+  <title>Robô Aprendiz &ndash; Meu Primeiro Classificador</title>
+
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="http://localhost:8000/images/artificial-intelligence.png" alt="Robô Aprendiz" title="Robô Aprendiz">
+      </a>
+      <h1><a href="http://localhost:8000">Robô Aprendiz</a></h1>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Robô Aprendiz</a></h1>
-                <nav><ul>
-                    <li class="active"><a href="/category/machine-learning.html">machine learning</a></li>
-                </ul>
-                </nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="/meu-primeiro-classificador.html" rel="bookmark"
-           title="Permalink to Meu Primeiro Classificador">Meu Primeiro Classificador</a></h1>
-    </header>
-
-    <div class="entry-content">
-<footer class="post-info">
-        <span>dom 08 março 2020</span>
-<span>| tags: <a href="/tag/kaggle.html">kaggle</a><a href="/tag/classificador.html">classificador</a><a href="/tag/primeiros-passos.html">primeiros-passos</a></span>
-</footer><!-- /.post-info -->      <style type="text/css">/*!
-*
-* IPython notebook
-*
-*/
-/* CSS font colors for translated ANSI escape sequences */
-/* The color values are a mix of
-   http://www.xcolors.net/dl/baskerville-ivorylight and
-   http://www.xcolors.net/dl/euphrasia */
-.ansi-black-fg {
-  color: #3E424D;
-}
-.ansi-black-bg {
-  background-color: #3E424D;
-}
-.ansi-black-intense-fg {
-  color: #282C36;
-}
-.ansi-black-intense-bg {
-  background-color: #282C36;
-}
-.ansi-red-fg {
-  color: #E75C58;
-}
-.ansi-red-bg {
-  background-color: #E75C58;
-}
-.ansi-red-intense-fg {
-  color: #B22B31;
-}
-.ansi-red-intense-bg {
-  background-color: #B22B31;
-}
-.ansi-green-fg {
-  color: #00A250;
-}
-.ansi-green-bg {
-  background-color: #00A250;
-}
-.ansi-green-intense-fg {
-  color: #007427;
-}
-.ansi-green-intense-bg {
-  background-color: #007427;
-}
-.ansi-yellow-fg {
-  color: #DDB62B;
-}
-.ansi-yellow-bg {
-  background-color: #DDB62B;
-}
-.ansi-yellow-intense-fg {
-  color: #B27D12;
-}
-.ansi-yellow-intense-bg {
-  background-color: #B27D12;
-}
-.ansi-blue-fg {
-  color: #208FFB;
-}
-.ansi-blue-bg {
-  background-color: #208FFB;
-}
-.ansi-blue-intense-fg {
-  color: #0065CA;
-}
-.ansi-blue-intense-bg {
-  background-color: #0065CA;
-}
-.ansi-magenta-fg {
-  color: #D160C4;
-}
-.ansi-magenta-bg {
-  background-color: #D160C4;
-}
-.ansi-magenta-intense-fg {
-  color: #A03196;
-}
-.ansi-magenta-intense-bg {
-  background-color: #A03196;
-}
-.ansi-cyan-fg {
-  color: #60C6C8;
-}
-.ansi-cyan-bg {
-  background-color: #60C6C8;
-}
-.ansi-cyan-intense-fg {
-  color: #258F8F;
-}
-.ansi-cyan-intense-bg {
-  background-color: #258F8F;
-}
-.ansi-white-fg {
-  color: #C5C1B4;
-}
-.ansi-white-bg {
-  background-color: #C5C1B4;
-}
-.ansi-white-intense-fg {
-  color: #A1A6B2;
-}
-.ansi-white-intense-bg {
-  background-color: #A1A6B2;
-}
-.ansi-default-inverse-fg {
-  color: #FFFFFF;
-}
-.ansi-default-inverse-bg {
-  background-color: #000000;
-}
-.ansi-bold {
-  font-weight: bold;
-}
-.ansi-underline {
-  text-decoration: underline;
-}
-/* The following styles are deprecated an will be removed in a future version */
-.ansibold {
-  font-weight: bold;
-}
-.ansi-inverse {
-  outline: 0.5px dotted;
-}
-/* use dark versions for foreground, to improve visibility */
-.ansiblack {
-  color: black;
-}
-.ansired {
-  color: darkred;
-}
-.ansigreen {
-  color: darkgreen;
-}
-.ansiyellow {
-  color: #c4a000;
-}
-.ansiblue {
-  color: darkblue;
-}
-.ansipurple {
-  color: darkviolet;
-}
-.ansicyan {
-  color: steelblue;
-}
-.ansigray {
-  color: gray;
-}
-/* and light for background, for the same reason */
-.ansibgblack {
-  background-color: black;
-}
-.ansibgred {
-  background-color: red;
-}
-.ansibggreen {
-  background-color: green;
-}
-.ansibgyellow {
-  background-color: yellow;
-}
-.ansibgblue {
-  background-color: blue;
-}
-.ansibgpurple {
-  background-color: magenta;
-}
-.ansibgcyan {
-  background-color: cyan;
-}
-.ansibggray {
-  background-color: gray;
-}
-div.cell {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  border-radius: 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-  border-color: transparent;
-  width: 100%;
-  padding: 5px;
-  /* This acts as a spacer between cells, that is outside the border */
-  margin: 0px;
-  outline: none;
-  position: relative;
-  overflow: visible;
-}
-div.cell:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: transparent;
-}
-div.cell.jupyter-soft-selected {
-  border-left-color: #E3F2FD;
-  border-left-width: 1px;
-  padding-left: 5px;
-  border-right-color: #E3F2FD;
-  border-right-width: 1px;
-  background: #E3F2FD;
-}
-@media print {
-  div.cell.jupyter-soft-selected {
-    border-color: transparent;
-  }
-}
-div.cell.selected,
-div.cell.selected.jupyter-soft-selected {
-  border-color: #ababab;
-}
-div.cell.selected:before,
-div.cell.selected.jupyter-soft-selected:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: #42A5F5;
-}
-@media print {
-  div.cell.selected,
-  div.cell.selected.jupyter-soft-selected {
-    border-color: transparent;
-  }
-}
-.edit_mode div.cell.selected {
-  border-color: #66BB6A;
-}
-.edit_mode div.cell.selected:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: #66BB6A;
-}
-@media print {
-  .edit_mode div.cell.selected {
-    border-color: transparent;
-  }
-}
-.prompt {
-  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
-  min-width: 14ex;
-  /* This padding is tuned to match the padding on the CodeMirror editor. */
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace;
-  text-align: right;
-  /* This has to match that of the the CodeMirror class line-height below */
-  line-height: 1.21429em;
-  /* Don't highlight prompt number selection */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  /* Use default cursor */
-  cursor: default;
-}
-@media (max-width: 540px) {
-  .prompt {
-    text-align: left;
-  }
-}
-div.inner_cell {
-  min-width: 0;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  /* Old browsers */
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  /* Modern browsers */
-  flex: 1;
-}
-/* input_area and input_prompt must match in top border and margin for alignment */
-div.input_area {
-  border: 1px solid #cfcfcf;
-  border-radius: 2px;
-  background: #f7f7f7;
-  line-height: 1.21429em;
-}
-/* This is needed so that empty prompt areas can collapse to zero height when there
-   is no content in the output_subarea and the prompt. The main purpose of this is
-   to make sure that empty JavaScript output_subareas have no height. */
-div.prompt:empty {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-div.unrecognized_cell {
-  padding: 5px 5px 5px 0px;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-div.unrecognized_cell .inner_cell {
-  border-radius: 2px;
-  padding: 5px;
-  font-weight: bold;
-  color: red;
-  border: 1px solid #cfcfcf;
-  background: #eaeaea;
-}
-div.unrecognized_cell .inner_cell a {
-  color: inherit;
-  text-decoration: none;
-}
-div.unrecognized_cell .inner_cell a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-@media (max-width: 540px) {
-  div.unrecognized_cell > div.prompt {
-    display: none;
-  }
-}
-div.code_cell {
-  /* avoid page breaking on code cells when printing */
-}
-@media print {
-  div.code_cell {
-    page-break-inside: avoid;
-  }
-}
-/* any special styling for code cells that are currently running goes here */
-div.input {
-  page-break-inside: avoid;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.input {
-    /* Old browsers */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-align: stretch;
-    display: -moz-box;
-    -moz-box-orient: vertical;
-    -moz-box-align: stretch;
-    display: box;
-    box-orient: vertical;
-    box-align: stretch;
-    /* Modern browsers */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-/* input_area and input_prompt must match in top border and margin for alignment */
-div.input_prompt {
-  color: #303F9F;
-  border-top: 1px solid transparent;
-}
-div.input_area > div.highlight {
-  margin: 0.4em;
-  border: none;
-  padding: 0px;
-  background-color: transparent;
-}
-div.input_area > div.highlight > pre {
-  margin: 0px;
-  border: none;
-  padding: 0px;
-  background-color: transparent;
-}
-/* The following gets added to the <head> if it is detected that the user has a
- * monospace font with inconsistent normal/bold/italic height.  See
- * notebookmain.js.  Such fonts will have keywords vertically offset with
- * respect to the rest of the text.  The user should select a better font.
- * See: https://github.com/ipython/ipython/issues/1503
- *
- * .CodeMirror span {
- *      vertical-align: bottom;
- * }
- */
-.CodeMirror {
-  line-height: 1.21429em;
-  /* Changed from 1em to our global default */
-  font-size: 14px;
-  height: auto;
-  /* Changed to auto to autogrow */
-  background: none;
-  /* Changed from white to allow our bg to show through */
-}
-.CodeMirror-scroll {
-  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
-  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
-  overflow-y: hidden;
-  overflow-x: auto;
-}
-.CodeMirror-lines {
-  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
-  /* we have set a different line-height and want this to scale with that. */
-  /* Note that this should set vertical padding only, since CodeMirror assumes
-       that horizontal padding will be set on CodeMirror pre */
-  padding: 0.4em 0;
-}
-.CodeMirror-linenumber {
-  padding: 0 8px 0 4px;
-}
-.CodeMirror-gutters {
-  border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;
-}
-.CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
-    use .CodeMirror-lines for vertical */
-  padding: 0 0.4em;
-  border: 0;
-  border-radius: 0;
-}
-.CodeMirror-cursor {
-  border-left: 1.4px solid black;
-}
-@media screen and (min-width: 2138px) and (max-width: 4319px) {
-  .CodeMirror-cursor {
-    border-left: 2px solid black;
-  }
-}
-@media screen and (min-width: 4320px) {
-  .CodeMirror-cursor {
-    border-left: 4px solid black;
-  }
-}
-/*
-
-Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
-Adapted from GitHub theme
-
-*/
-.highlight-base {
-  color: #000;
-}
-.highlight-variable {
-  color: #000;
-}
-.highlight-variable-2 {
-  color: #1a1a1a;
-}
-.highlight-variable-3 {
-  color: #333333;
-}
-.highlight-string {
-  color: #BA2121;
-}
-.highlight-comment {
-  color: #408080;
-  font-style: italic;
-}
-.highlight-number {
-  color: #080;
-}
-.highlight-atom {
-  color: #88F;
-}
-.highlight-keyword {
-  color: #008000;
-  font-weight: bold;
-}
-.highlight-builtin {
-  color: #008000;
-}
-.highlight-error {
-  color: #f00;
-}
-.highlight-operator {
-  color: #AA22FF;
-  font-weight: bold;
-}
-.highlight-meta {
-  color: #AA22FF;
-}
-/* previously not defined, copying from default codemirror */
-.highlight-def {
-  color: #00f;
-}
-.highlight-string-2 {
-  color: #f50;
-}
-.highlight-qualifier {
-  color: #555;
-}
-.highlight-bracket {
-  color: #997;
-}
-.highlight-tag {
-  color: #170;
-}
-.highlight-attribute {
-  color: #00c;
-}
-.highlight-header {
-  color: blue;
-}
-.highlight-quote {
-  color: #090;
-}
-.highlight-link {
-  color: #00c;
-}
-/* apply the same style to codemirror */
-.cm-s-ipython span.cm-keyword {
-  color: #008000;
-  font-weight: bold;
-}
-.cm-s-ipython span.cm-atom {
-  color: #88F;
-}
-.cm-s-ipython span.cm-number {
-  color: #080;
-}
-.cm-s-ipython span.cm-def {
-  color: #00f;
-}
-.cm-s-ipython span.cm-variable {
-  color: #000;
-}
-.cm-s-ipython span.cm-operator {
-  color: #AA22FF;
-  font-weight: bold;
-}
-.cm-s-ipython span.cm-variable-2 {
-  color: #1a1a1a;
-}
-.cm-s-ipython span.cm-variable-3 {
-  color: #333333;
-}
-.cm-s-ipython span.cm-comment {
-  color: #408080;
-  font-style: italic;
-}
-.cm-s-ipython span.cm-string {
-  color: #BA2121;
-}
-.cm-s-ipython span.cm-string-2 {
-  color: #f50;
-}
-.cm-s-ipython span.cm-meta {
-  color: #AA22FF;
-}
-.cm-s-ipython span.cm-qualifier {
-  color: #555;
-}
-.cm-s-ipython span.cm-builtin {
-  color: #008000;
-}
-.cm-s-ipython span.cm-bracket {
-  color: #997;
-}
-.cm-s-ipython span.cm-tag {
-  color: #170;
-}
-.cm-s-ipython span.cm-attribute {
-  color: #00c;
-}
-.cm-s-ipython span.cm-header {
-  color: blue;
-}
-.cm-s-ipython span.cm-quote {
-  color: #090;
-}
-.cm-s-ipython span.cm-link {
-  color: #00c;
-}
-.cm-s-ipython span.cm-error {
-  color: #f00;
-}
-.cm-s-ipython span.cm-tab {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
-  background-position: right;
-  background-repeat: no-repeat;
-}
-div.output_wrapper {
-  /* this position must be relative to enable descendents to be absolute within it */
-  position: relative;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  z-index: 1;
-}
-/* class for the output area when it should be height-limited */
-div.output_scroll {
-  /* ideally, this would be max-height, but FF barfs all over that */
-  height: 24em;
-  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
-  width: 100%;
-  overflow: auto;
-  border-radius: 2px;
-  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-  display: block;
-}
-/* output div while it is collapsed */
-div.output_collapsed {
-  margin: 0px;
-  padding: 0px;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-div.out_prompt_overlay {
-  height: 100%;
-  padding: 0px 0.4em;
-  position: absolute;
-  border-radius: 2px;
-}
-div.out_prompt_overlay:hover {
-  /* use inner shadow to get border that is computed the same on WebKit/FF */
-  -webkit-box-shadow: inset 0 0 1px #000;
-  box-shadow: inset 0 0 1px #000;
-  background: rgba(240, 240, 240, 0.5);
-}
-div.output_prompt {
-  color: #D84315;
-}
-/* This class is the outer container of all output sections. */
-div.output_area {
-  padding: 0px;
-  page-break-inside: avoid;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-div.output_area .MathJax_Display {
-  text-align: left !important;
-}
-div.output_area 
-div.output_area 
-div.output_area img,
-div.output_area svg {
-  max-width: 100%;
-  height: auto;
-}
-div.output_area img.unconfined,
-div.output_area svg.unconfined {
-  max-width: none;
-}
-div.output_area .mglyph > img {
-  max-width: none;
-}
-/* This is needed to protect the pre formating from global settings such
-   as that of bootstrap */
-.output {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.output_area {
-    /* Old browsers */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-align: stretch;
-    display: -moz-box;
-    -moz-box-orient: vertical;
-    -moz-box-align: stretch;
-    display: box;
-    box-orient: vertical;
-    box-align: stretch;
-    /* Modern browsers */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-div.output_area pre {
-  margin: 0;
-  padding: 1px 0 1px 0;
-  border: 0;
-  vertical-align: baseline;
-  color: black;
-  background-color: transparent;
-  border-radius: 0;
-}
-/* This class is for the output subarea inside the output_area and after
-   the prompt div. */
-div.output_subarea {
-  overflow-x: auto;
-  padding: 0.4em;
-  /* Old browsers */
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  /* Modern browsers */
-  flex: 1;
-  max-width: calc(100% - 14ex);
-}
-div.output_scroll div.output_subarea {
-  overflow-x: visible;
-}
-/* The rest of the output_* classes are for special styling of the different
-   output types */
-/* all text output has this class: */
-div.output_text {
-  text-align: left;
-  color: #000;
-  /* This has to match that of the the CodeMirror class line-height below */
-  line-height: 1.21429em;
-}
-/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
-div.output_stderr {
-  background: #fdd;
-  /* very light red background for stderr */
-}
-div.output_latex {
-  text-align: left;
-}
-/* Empty output_javascript divs should have no height */
-div.output_javascript:empty {
-  padding: 0;
-}
-.js-error {
-  color: darkred;
-}
-/* raw_input styles */
-div.raw_input_container {
-  line-height: 1.21429em;
-  padding-top: 5px;
-}
-pre.raw_input_prompt {
-  /* nothing needed here. */
-}
-input.raw_input {
-  font-family: monospace;
-  font-size: inherit;
-  color: inherit;
-  width: auto;
-  /* make sure input baseline aligns with prompt */
-  vertical-align: baseline;
-  /* padding + margin = 0.5em between prompt and cursor */
-  padding: 0em 0.25em;
-  margin: 0em 0.25em;
-}
-input.raw_input:focus {
-  box-shadow: none;
-}
-p.p-space {
-  margin-bottom: 10px;
-}
-div.output_unrecognized {
-  padding: 5px;
-  font-weight: bold;
-  color: red;
-}
-div.output_unrecognized a {
-  color: inherit;
-  text-decoration: none;
-}
-div.output_unrecognized a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-.rendered_html {
-  color: #000;
-  /* any extras will just be numbers: */
-}
+<p>Aprendizagem de máquina com técnicas de IA</p>      <nav>
+        <ul class="list">
 
 
+            <li><a target="_self" href="http://codeatest.com" >Sobre</a></li>
+            <li><a target="_self" href="#" >Contato</a></li>
+        </ul>
+      </nav>
 
-.rendered_html :link {
-  text-decoration: underline;
-}
-.rendered_html :visited {
-  text-decoration: underline;
-}
-
-
-
-
-
-
-.rendered_html h1:first-child {
-  margin-top: 0.538em;
-}
-.rendered_html h2:first-child {
-  margin-top: 0.636em;
-}
-.rendered_html h3:first-child {
-  margin-top: 0.777em;
-}
-.rendered_html h4:first-child {
-  margin-top: 1em;
-}
-.rendered_html h5:first-child {
-  margin-top: 1em;
-}
-.rendered_html h6:first-child {
-  margin-top: 1em;
-}
-.rendered_html ul:not(.list-inline),
-.rendered_html ol:not(.list-inline) {
-  padding-left: 2em;
-}
+      <ul class="social">
+          <li>
+            <a  class="sc-You can add links in your config file" href="#" target="_blank">
+            <i class="fab fa-You can add links in your config file">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-Another social link" href="#" target="_blank">
+            <i class="fab fa-Another social link">
+            </i>
+          </a></li>
+      </ul>
+    </div>
 
 
+  </aside>
+  <main>
+
+    <nav>
+      <a href="http://localhost:8000">Início</a>
+
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
 
 
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="meu-primeiro-classificador">Meu Primeiro Classificador</h1>
+    <p>
+      Publicado em dom 22 março 2020 na categoria <a href="http://localhost:8000/category/machine-learning.html">machine learning</a>
+
+    </p>
+  </header>
 
 
-
-
-.rendered_html * + ul {
-  margin-top: 1em;
-}
-.rendered_html * + ol {
-  margin-top: 1em;
-}
-
-
-
-
-
-.rendered_html pre,
-
-
-
-
-.rendered_html tr,
-.rendered_html th,
-
-
-.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
-.rendered_html * + table {
-  margin-top: 1em;
-}
-
-.rendered_html * + p {
-  margin-top: 1em;
-}
-
-.rendered_html * + img {
-  margin-top: 1em;
-}
-.rendered_html img,
-
-.rendered_html img.unconfined,
-
-
-.rendered_html * + .alert {
-  margin-top: 1em;
-}
-[dir="rtl"] 
-div.text_cell {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.text_cell > div.prompt {
-    display: none;
-  }
-}
-div.text_cell_render {
-  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
-  outline: none;
-  resize: none;
-  width: inherit;
-  border-style: none;
-  padding: 0.5em 0.5em 0.5em 0.4em;
-  color: #000;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-a.anchor-link:link {
-  text-decoration: none;
-  padding: 0px 20px;
-  visibility: hidden;
-}
-h1:hover .anchor-link,
-h2:hover .anchor-link,
-h3:hover .anchor-link,
-h4:hover .anchor-link,
-h5:hover .anchor-link,
-h6:hover .anchor-link {
-  visibility: visible;
-}
-.text_cell.rendered .input_area {
-  display: none;
-}
-.text_cell.rendered 
-.text_cell.rendered .rendered_html tr,
-.text_cell.rendered .rendered_html th,
-.text_cell.rendered 
-.text_cell.unrendered .text_cell_render {
-  display: none;
-}
-.text_cell .dropzone .input_area {
-  border: 2px dashed #bababa;
-  margin: -1px;
-}
-.cm-header-1,
-.cm-header-2,
-.cm-header-3,
-.cm-header-4,
-.cm-header-5,
-.cm-header-6 {
-  font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.cm-header-1 {
-  font-size: 185.7%;
-}
-.cm-header-2 {
-  font-size: 157.1%;
-}
-.cm-header-3 {
-  font-size: 128.6%;
-}
-.cm-header-4 {
-  font-size: 110%;
-}
-.cm-header-5 {
-  font-size: 100%;
-  font-style: italic;
-}
-.cm-header-6 {
-  font-size: 100%;
-  font-style: italic;
-}
-</style>
-<style type="text/css">.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight .gd { color: #A00000 } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
-.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
-.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0044DD } /* Generic.Traceback */
-.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #B00040 } /* Keyword.Type */
-.highlight .m { color: #666666 } /* Literal.Number */
-.highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
-.highlight .nb { color: #008000 } /* Name.Builtin */
-.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight .no { color: #880000 } /* Name.Constant */
-.highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
-.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #19177C } /* Name.Variable */
-.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mb { color: #666666 } /* Literal.Number.Bin */
-.highlight .mf { color: #666666 } /* Literal.Number.Float */
-.highlight .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
-.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
-.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
-.highlight .vc { color: #19177C } /* Name.Variable.Class */
-.highlight .vg { color: #19177C } /* Name.Variable.Global */
-.highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+  <div>
+    <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introdu&#231;&#227;o">Introdu&#231;&#227;o<a class="anchor-link" href="#Introdu&#231;&#227;o">&#182;</a></h1><p>Esse caderno explora como criar um classificador básico utilizando o <em>dataset</em> <a href="https://www.kaggle.com/c/titanic">Titanic</a>. Esse é um problema de classificação simples, binária, onde devemos prever se um passageiro irá ou não sobreviver (variável <em>Survived</em>), dado um conjunto de características (<em>features</em>) que ele possui (idade, sexo, porto de embarque etc.).</p>
+<h1 id="Introdu&#231;&#227;o">Introdu&#231;&#227;o<a class="anchor-link" href="#Introdu&#231;&#227;o">&#182;</a></h1><p>Vamos explorar aqui como criar um classificador básico utilizando o <em>dataset</em> <a href="https://www.kaggle.com/c/titanic">Titanic</a> do Kaggle. Esse é um problema de classificação simples, binária, onde devemos prever se um passageiro do navio irá ou não sobreviver, dado um conjunto de características (<em>features</em>) que ele possui (idade, sexo, porto de embarque etc.).</p>
 <p>Nessa implementação vamos utilizar a biblioteca scikit-learn, com o classificador <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">RandomForest</a>.</p>
-<p>A ideia, nesse caderno, é mostrar, numa abordagem top-down, como é rápida a criação de um classificador que prevê um resultado de um problema, sem muito conhecimento prévio, e já obtendo resultados minimamente aceitáveis.</p>
+<p>A ideia é mostrar, numa abordagem top-down, como é rápida a criação de um classificador que prevê um resultado de um problema, sem muito conhecimento prévio, e já obtendo resultados minimamente aceitáveis.</p>
 <p>Durante a solução do problemas, serão apresentados conceitos relacionados a implementação de um classificador em <em>Machine Learning</em>:</p>
 <ul>
 <li>exploração dos dados;</li>
@@ -1225,7 +188,7 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Iniciando-o-pr&#233;-processamento">Iniciando o pr&#233;-processamento<a class="anchor-link" href="#Iniciando-o-pr&#233;-processamento">&#182;</a></h1><p>Vamos ler os arquivos de treino e de teste. Ambos são arquivos <em>.csv</em>; geralmente, o Kaggle disponibiliza em seus problemas os arquivos de treino e teste separados, de forma que o modelo seja treinado e melhorado com os dados de treino e validado junto aos dados de teste.</p>
+<h1 id="Iniciando-o-pr&#233;-processamento">Iniciando o pr&#233;-processamento<a class="anchor-link" href="#Iniciando-o-pr&#233;-processamento">&#182;</a></h1><p>Vamos ler os arquivos de treino e de teste. Ambos são arquivos <em>.csv</em>; geralmente, o Kaggle disponibiliza em seus problemas os arquivos de treino e teste separados, de forma que o modelo seja treinado e melhorado com os dados do arquivo de treino e validado junto aos dados do arquivo de teste.</p>
 <p>Vamos utilizar um <a href="http://pandas.pydata.org/pandas-docs/version/0.19/generated/pandas.DataFrame.html">DataFrame</a> do <a href="https://pandas.pydata.org/">pandas</a>. No código abaixo, a saída do arquivo é direcionada para dois <em>DataFrames</em> distintos: df_train e df_test.</p>
 <p><strong>Nota</strong>: Um <em>DataFrame</em> é uma estrutura de dados bidimensional, com linhas e colunas. Para efeitos de comparação, pense em <em>DataFrame</em> como uma tabela de um banco de dados relacional ou uma planilha.</p>
 
@@ -1251,20 +214,20 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Para facilitar o pré-processamento, vamos juntar os 2 <em>DataFrames</em> em um só. Isso costuma ser uma boa prática, pois, temos as seguintes vantagens:</p>
+<p>Para facilitar o pré-processamento, vamos juntar os 2 <em>DataFrames</em> em um só. Isso costuma ser uma <strong>boa prática</strong>, pois, temos as seguintes vantagens:</p>
 <ul>
-<li>consistência na criação de variáveis categóricas (se todas as categorias não estiverem presentes nos dois <em>sets</em>, elas podem ser codificadas de forma diferente se isso for feito em duas operações em separado) - isso vai ficar mais claro adiante;</li>
-<li>remoção de colunas: às vezes, optamos por remover uma coluna por algum motivo; ao retirar do set de treino, precisamos também remover do set de teste (ambos os sets precisam ter o mesmo conjunto de <em>features</em>);</li>
+<li>remoção de colunas: às vezes, optamos por remover uma coluna por algum motivo; ao retirar uma coluna dos dados de treino, precisamos também removê-la dos dados de teste (ambos os conjunto de dados precisam ter o mesmo conjunto de colunas - <em>features</em>, sob pena de termos um erro ao tentar construir o modelo);</li>
 <li>remoção/tratamento uniforme de dados nulos;</li>
+<li>consistência na criação de variáveis categóricas (se todas as categorias não estiverem presentes nos dois conjuntos de dados, elas podem ser codificadas de forma diferente se isso for feito em duas operações em separado) - isso vai ficar mais claro adiante;</li>
 </ul>
-<p>Portanto, juntar os 2 sets de dados uniformiza e padroniza o tratamento de dados, de forma que o modelo criado lide de forma consistente nos dois casos.</p>
+<p>Portanto, juntar os 2 conjunto de dados uniformiza e padroniza o tratamento, de forma que o modelo criado lide de forma consistente nos dois casos.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_raw</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_test</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
@@ -1281,7 +244,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -1306,7 +269,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_raw</span><span class="o">.</span><span class="n">columns</span>
@@ -1322,7 +285,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -1342,14 +305,15 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Vis&#227;o-geral-dos-dos-dados">Vis&#227;o geral dos dos dados<a class="anchor-link" href="#Vis&#227;o-geral-dos-dos-dados">&#182;</a></h3><p>Vamos dar uma olhada geral nos dados que temos.</p>
+<h3 id="Vis&#227;o-geral-dos-dos-dados">Vis&#227;o geral dos dos dados<a class="anchor-link" href="#Vis&#227;o-geral-dos-dos-dados">&#182;</a></h3><p>Antes de começarmos a trabalhar com os dados, é bom termos uma visão geral dos dados.</p>
+<p>Vamos dar uma olhada geral nos dados que temos.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_raw</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -1365,7 +329,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -1404,154 +368,154 @@ h6:hover .anchor-link {
   </thead>
   <tbody>
     <tr>
-      <th>659</th>
-      <td>660</td>
-      <td>0.0</td>
+      <th>191</th>
+      <td>1083</td>
+      <td>NaN</td>
       <td>1</td>
-      <td>Newell, Mr. Arthur Webster</td>
+      <td>Salomon, Mr. Abraham L</td>
       <td>male</td>
-      <td>58.0</td>
+      <td>NaN</td>
       <td>0</td>
-      <td>2</td>
-      <td>35273</td>
-      <td>113.2750</td>
-      <td>D48</td>
-      <td>C</td>
+      <td>0</td>
+      <td>111163</td>
+      <td>26.0000</td>
+      <td>NaN</td>
+      <td>S</td>
     </tr>
     <tr>
-      <th>632</th>
-      <td>633</td>
+      <th>549</th>
+      <td>550</td>
       <td>1.0</td>
-      <td>1</td>
-      <td>Stahelin-Maeglin, Dr. Max</td>
+      <td>2</td>
+      <td>Davies, Master. John Morgan Jr</td>
       <td>male</td>
-      <td>32.0</td>
+      <td>8.00</td>
+      <td>1</td>
+      <td>1</td>
+      <td>C.A. 33112</td>
+      <td>36.7500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>991</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>Nancarrow, Mr. William Henry</td>
+      <td>male</td>
+      <td>33.00</td>
       <td>0</td>
       <td>0</td>
-      <td>13214</td>
+      <td>A./5. 3338</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>492</th>
+      <td>493</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Molson, Mr. Harry Markland</td>
+      <td>male</td>
+      <td>55.00</td>
+      <td>0</td>
+      <td>0</td>
+      <td>113787</td>
       <td>30.5000</td>
-      <td>B50</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>671</th>
-      <td>672</td>
-      <td>0.0</td>
-      <td>1</td>
-      <td>Davidson, Mr. Thornton</td>
-      <td>male</td>
-      <td>31.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>F.C. 12750</td>
-      <td>52.0000</td>
-      <td>B71</td>
+      <td>C30</td>
       <td>S</td>
     </tr>
     <tr>
-      <th>653</th>
-      <td>654</td>
+      <th>701</th>
+      <td>702</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>Silverthorne, Mr. Spencer Victor</td>
+      <td>male</td>
+      <td>35.00</td>
+      <td>0</td>
+      <td>0</td>
+      <td>PC 17475</td>
+      <td>26.2875</td>
+      <td>E24</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>79</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>Caldwell, Master. Alden Gates</td>
+      <td>male</td>
+      <td>0.83</td>
+      <td>0</td>
+      <td>2</td>
+      <td>248738</td>
+      <td>29.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>107</td>
       <td>1.0</td>
       <td>3</td>
-      <td>O'Leary, Miss. Hanora "Norah"</td>
+      <td>Salkjelsvik, Miss. Anna Kristine</td>
       <td>female</td>
+      <td>21.00</td>
+      <td>0</td>
+      <td>0</td>
+      <td>343120</td>
+      <td>7.6500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>470</th>
+      <td>471</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>Keefe, Mr. Arthur</td>
+      <td>male</td>
       <td>NaN</td>
       <td>0</td>
       <td>0</td>
-      <td>330919</td>
-      <td>7.8292</td>
+      <td>323592</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>898</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>Connolly, Miss. Kate</td>
+      <td>female</td>
+      <td>30.00</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330972</td>
+      <td>7.6292</td>
       <td>NaN</td>
       <td>Q</td>
     </tr>
     <tr>
-      <th>445</th>
-      <td>446</td>
-      <td>1.0</td>
-      <td>1</td>
-      <td>Dodge, Master. Washington</td>
-      <td>male</td>
-      <td>4.0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>33638</td>
-      <td>81.8583</td>
-      <td>A34</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>806</th>
-      <td>807</td>
-      <td>0.0</td>
-      <td>1</td>
-      <td>Andrews, Mr. Thomas Jr</td>
-      <td>male</td>
-      <td>39.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>112050</td>
-      <td>0.0000</td>
-      <td>A36</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>178</th>
-      <td>179</td>
-      <td>0.0</td>
-      <td>2</td>
-      <td>Hale, Mr. Reginald</td>
-      <td>male</td>
-      <td>30.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>250653</td>
-      <td>13.0000</td>
-      <td>NaN</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>102</th>
-      <td>994</td>
+      <th>265</th>
+      <td>1157</td>
       <td>NaN</td>
       <td>3</td>
-      <td>Foley, Mr. William</td>
+      <td>Lyntakoff, Mr. Stanko</td>
       <td>male</td>
       <td>NaN</td>
       <td>0</td>
       <td>0</td>
-      <td>365235</td>
-      <td>7.7500</td>
-      <td>NaN</td>
-      <td>Q</td>
-    </tr>
-    <tr>
-      <th>812</th>
-      <td>813</td>
-      <td>0.0</td>
-      <td>2</td>
-      <td>Slemen, Mr. Richard James</td>
-      <td>male</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>28206</td>
-      <td>10.5000</td>
+      <td>349235</td>
+      <td>7.8958</td>
       <td>NaN</td>
       <td>S</td>
-    </tr>
-    <tr>
-      <th>296</th>
-      <td>297</td>
-      <td>0.0</td>
-      <td>3</td>
-      <td>Hanna, Mr. Mansour</td>
-      <td>male</td>
-      <td>23.5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2693</td>
-      <td>7.2292</td>
-      <td>NaN</td>
-      <td>C</td>
     </tr>
   </tbody>
 </table>
@@ -1567,16 +531,15 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A listagem acima é uma exibição aleatória de 10 linhas (<em>sample(10)</em>); é interessante porque nos permite ter uma visão geral dos tipos dos dados que temos (numéricos, categóricos, textuais), presença de valores nulos etc.</p>
+<p>A listagem acima é uma exibição <strong>aleatória</strong> (<em>sample(10)</em>) de 10 linhas; é interessante porque nos permite ter uma visão geral dos tipos dos dados que temos (numéricos, categóricos, textuais), presença de valores nulos etc.</p>
 <p>Podemos visualizar, também, um <strong>sumário estatístico dos dados</strong>. Para isso, usamos o método <em>describe()</em> do <em>DataFrame</em>. Esse método nos retorna um outro DataFrame com diversas estatísticas: número de entradas, média, desvio-padrão, valor mínimo, valor máximo e percentis.</p>
-<p>Isso é uma forma de ter uma visão geral dos dados que temos.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_raw</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -1592,7 +555,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -1719,15 +682,15 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Nota</strong>: colunas com valores não numéricos são excluídas dessa visualização (veja que a coluna Name não aparece, por exemplo).</p>
-<p>Vamos listar as <em>features</em> com valores nulos.</p>
+<p><strong>Nota</strong>: colunas com valores não numéricos são excluídas dessa visualização (veja que a coluna <em>Name</em> não aparece, por exemplo).</p>
+<p>Vamos listar as colunas com <strong>valores nulos</strong>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">df_raw</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df_raw</span><span class="p">))</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1743,7 +706,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -1773,10 +736,10 @@ dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Dessas visualizações, podemos tirar algumas conclusões:</p>
+<p>Das saídas anteriores, podemos tirar algumas conclusões:</p>
 <ul>
-<li>As colunas <em>Age</em>, <em>Cabin</em>, <em>Embarked</em> possuem valores nulos (<em>Survived</em> é a nossa variável dependente; esses valores nulos referem-se às entradas do dataset de teste);</li>
-<li>A coluna <em>Sex</em>, <em>Ticket</em> e <em>Embarked</em> devem ser categorizadas - os algoritmos de Machine Learning precisam de entradas do tipo numérico; não sabem lidar com texto;</li>
+<li>As colunas <em>Age</em>, <em>Cabin</em>, <em>Embarked</em> possuem valores nulos (<em>Survived</em> é a nossa variável dependente, isto é, o valor que queremos prever; esses valores nulos referem-se às entradas do arquivo de teste);</li>
+<li>A coluna <em>Sex</em>, <em>Ticket</em> e <em>Embarked</em> devem ser categorizadas - os algoritmos de <em>Machine Learning</em> precisam de entradas do tipo numérico - não sabem lidar com texto;</li>
 <li>As colunas <em>Name</em>  e <em>PassengerId</em>, em princípio, não fazem sentido. Provavelmente nossa variável dependente, <em>Survived</em>, não se relaciona com elas. Logo, podemos removê-las.</li>
 </ul>
 
@@ -1795,9 +758,9 @@ dtype: float64</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A maioria das bibliotecas de <em>Machine Learning</em>, incluindo a scikit-learn, disparam erros ao usar dados com valores nulos. Por isso precisamos tratar esses valores. Temos algumas alternativas:</p>
 <ul>
-<li>remover as linhas com valores nulos (essa não costuma ser uma boa ideia, pois, estamos jogando fora linhas que possuem outras informações por causa de valores nulos em determinadas colunas);</li>
-<li>remover as colunas que possuem valores nulos (sob pena de perda de informação, caso elas sejam úteis);</li>
-<li><em>Imputation</em>: preencher os valores nulos com algum valor; por exemplo, podemos substituir os nulos presentes em uma coluna pela média, mediana ou moda dos valores da coluna; esse procedimento nos dá um melhor resultado do que a simples remoção da coluna;</li>
+<li><strong>remover as linhas</strong> com valores nulos (essa não costuma ser uma boa ideia, pois, estamos jogando fora linhas que possuem outras informações por causa de valores nulos em determinadas colunas);</li>
+<li><strong>remover as colunas</strong> que possuem valores nulos (sob pena de perda de informação, caso elas sejam úteis);</li>
+<li><strong><em>Imputation</em></strong>: preencher os valores nulos com algum valor; por exemplo, podemos substituir os nulos presentes em uma coluna pela média, mediana ou moda dos valores da coluna; esse procedimento nos dá um melhor resultado do que a simples remoção da coluna;</li>
 </ul>
 <p>Vamos usar as duas últimas alternativas acima.</p>
 <p><strong>Nota</strong>: dado ao alto índice de valores nulos (77%), vamos optar por remover a coluna <em>Cabin</em>;</p>
@@ -1807,7 +770,7 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span> <span class="o">=</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1826,7 +789,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -1847,7 +810,6 @@ dtype: float64</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uma boa prática, antes de fazer os tratamentos necessários nos dados, é criar uma cópia dos dados originais, de forma que estes fiquem intactos. Foi isso que fizemos ao criar a variável <em>df_copy</em>.</p>
-<p>O método <em>drop()</em> permite-nos remover colunas (quando axis=1; se axis=0, estamos removendo linhas). Via de regra, o método <em>drop()</em> retorna um novo DataFrame sem as colunas que foram removidas; quando usamos <em>inplace=True</em>, <em>drop()</em> remove as colunas do próprio DataFrame, sem a necessidade de retornar um outro DataFrame.</p>
 <p>Para as colunas <em>Age</em> e <em>Fare</em>, vamos colocar no lugar dos valores nulos a média das idades presentes.</p>
 
 </div>
@@ -1855,7 +817,7 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">age_not_null</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
@@ -1881,7 +843,7 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Embarked&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
@@ -1897,13 +859,13 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f29e60d4278&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd982028290&gt;</pre>
 </div>
 
 </div>
@@ -1916,7 +878,7 @@ dtype: float64</pre>
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -1930,14 +892,14 @@ dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>O valor mais comun, a moda, é o valor 'S'. Vamos substituir por este valor os valores nulos.</p>
+<p>O valor mais comun, a moda, é o valor 'S'. Vamos substituir os valores nulos por 'S'.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Embarked&#39;</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1958,7 +920,7 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">df_copy</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df_copy</span><span class="p">))</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1974,7 +936,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -2004,7 +966,7 @@ dtype: float64</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pronto. Tratamos todos os nulos. Podemos prosseguir com o pré-processamento de dados.</p>
-<p><strong>Nota</strong>: lembre-se que a coluna <em>Survived</em>, que é a nossa variável alvo, tem valores nulos provenientes dos dados do arquivo de teste - é o que vamos prever.</p>
+<p><strong>Nota</strong>: lembre-se que a coluna <em>Survived</em> tem valores nulos provenientes dos dados do arquivo de teste - é o que vamos prever.</p>
 
 </div>
 </div>
@@ -2023,14 +985,14 @@ dtype: float64</pre>
 <p>Assim como no caso dos valores nulos, passar variáveis categóricas para modelos de <em>Machine Learning</em> também resultam em erros. Por isso precisamos tratar esses valores.</p>
 <p>A forma mais popular de tratamento de variáveis categóricas é o <strong>One-Hot Encoding</strong>.</p>
 <p><strong>One-Hot Encoding</strong> cria novas colunas, binárias, indicando a presença ou ausência de cada um dos valores categóricos no conjunto de dados original. É uma boa técnica quando o conjunto de valores categóricos não é muito grande - caso contrário, vamos ter uma explosão de colunas.</p>
-<p>Primeiramente, vamos visualizar os tipos de dados de cada uma das nossas <em>features</em> (colunas).</p>
+<p>Primeiramente, vamos visualizar os tipos de dados de cada uma das nossas colunas (<em>features</em>).</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="o">.</span><span class="n">dtypes</span>
@@ -2046,7 +1008,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -2076,17 +1038,17 @@ dtype: object</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As variáveis do tipo <strong>object</strong> indicam que elas possuem texto. Essas, em geral, são colunas que devem passar pelo processo de <em>encoding</em>.</p>
-<p>Vamos verificar a quantidade de valores únicos em cada uma dessas colunas <em>object</em>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unique_values</span> <span class="o">=</span> <span class="p">{}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Vamos verificar a quantidade de valores únicos em cada uma dessas colunas object.</span>
+<span class="n">unique_values</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
         <span class="n">unique_values</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_copy</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
@@ -2104,7 +1066,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -2131,7 +1093,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2148,7 +1110,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -2167,7 +1129,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Transformamos texto em categoria</span>
@@ -2176,9 +1138,19 @@ dtype: object</pre>
 <span class="c1"># Substitui os valores pelos códigos de cada categoria</span>
 <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Ticket&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Ticket&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
 <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+</pre></div>
 
+    </div>
+</div>
+</div>
 
-<span class="n">df_copy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2191,7 +1163,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -2228,134 +1200,134 @@ dtype: object</pre>
   </thead>
   <tbody>
     <tr>
-      <th>359</th>
-      <td>360</td>
+      <th>416</th>
+      <td>417</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>34.000000</td>
+      <td>1</td>
+      <td>1</td>
+      <td>305</td>
+      <td>32.5000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>568</th>
+      <td>569</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>29.881138</td>
+      <td>0</td>
+      <td>0</td>
+      <td>281</td>
+      <td>7.2292</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>939</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>1</td>
+      <td>29.881138</td>
+      <td>0</td>
+      <td>0</td>
+      <td>640</td>
+      <td>7.7500</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>281</th>
+      <td>1173</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0.750000</td>
+      <td>1</td>
+      <td>1</td>
+      <td>883</td>
+      <td>13.7750</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>362</th>
+      <td>363</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>45.000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>286</td>
+      <td>14.4542</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>358</th>
+      <td>359</td>
       <td>1.0</td>
       <td>3</td>
       <td>0</td>
       <td>29.881138</td>
       <td>0</td>
       <td>0</td>
-      <td>391</td>
+      <td>381</td>
       <td>7.8792</td>
       <td>Q</td>
     </tr>
     <tr>
-      <th>142</th>
-      <td>143</td>
-      <td>1.0</td>
+      <th>214</th>
+      <td>215</td>
+      <td>0.0</td>
       <td>3</td>
-      <td>0</td>
-      <td>24.000000</td>
+      <td>1</td>
+      <td>29.881138</td>
       <td>1</td>
       <td>0</td>
-      <td>913</td>
-      <td>15.8500</td>
+      <td>611</td>
+      <td>7.7500</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>702</th>
+      <td>703</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>18.000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>286</td>
+      <td>14.4542</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>190</th>
+      <td>191</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>32.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>156</td>
+      <td>13.0000</td>
       <td>S</td>
     </tr>
     <tr>
-      <th>250</th>
-      <td>1142</td>
-      <td>NaN</td>
+      <th>58</th>
+      <td>59</td>
+      <td>1.0</td>
       <td>2</td>
       <td>0</td>
-      <td>0.920000</td>
+      <td>5.000000</td>
       <td>1</td>
       <td>2</td>
       <td>768</td>
       <td>27.7500</td>
       <td>S</td>
-    </tr>
-    <tr>
-      <th>591</th>
-      <td>592</td>
-      <td>1.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>52.000000</td>
-      <td>1</td>
-      <td>0</td>
-      <td>627</td>
-      <td>78.2667</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>115</th>
-      <td>1007</td>
-      <td>NaN</td>
-      <td>3</td>
-      <td>1</td>
-      <td>18.000000</td>
-      <td>1</td>
-      <td>0</td>
-      <td>275</td>
-      <td>14.4542</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>10</td>
-      <td>1.0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>14.000000</td>
-      <td>1</td>
-      <td>0</td>
-      <td>174</td>
-      <td>30.0708</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>159</th>
-      <td>1051</td>
-      <td>NaN</td>
-      <td>3</td>
-      <td>0</td>
-      <td>26.000000</td>
-      <td>0</td>
-      <td>2</td>
-      <td>883</td>
-      <td>13.7750</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>145</th>
-      <td>146</td>
-      <td>0.0</td>
-      <td>2</td>
-      <td>1</td>
-      <td>19.000000</td>
-      <td>1</td>
-      <td>1</td>
-      <td>763</td>
-      <td>36.7500</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>785</th>
-      <td>786</td>
-      <td>0.0</td>
-      <td>3</td>
-      <td>1</td>
-      <td>25.000000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>651</td>
-      <td>7.2500</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>484</th>
-      <td>485</td>
-      <td>1.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>25.000000</td>
-      <td>1</td>
-      <td>0</td>
-      <td>82</td>
-      <td>91.0792</td>
-      <td>C</td>
     </tr>
   </tbody>
 </table>
@@ -2379,11 +1351,31 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df_copy</span><span class="p">)</span>
-<span class="n">df_copy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A função <em>get_dummies</em> do pandas permite fazer <em>one-hot encoding</em>, convertendo variáveis categóricas em variáveis indicadores (<em>dummy</em>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_copy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2396,7 +1388,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -2435,151 +1427,151 @@ dtype: object</pre>
   </thead>
   <tbody>
     <tr>
-      <th>387</th>
-      <td>1279</td>
-      <td>NaN</td>
-      <td>2</td>
-      <td>1</td>
-      <td>57.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>195</td>
-      <td>13.0000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>245</th>
-      <td>1137</td>
-      <td>NaN</td>
-      <td>1</td>
-      <td>1</td>
-      <td>41.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>110</td>
-      <td>51.8625</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>741</th>
-      <td>742</td>
-      <td>0.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>36.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>118</td>
-      <td>78.8500</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>349</th>
-      <td>1241</td>
-      <td>NaN</td>
-      <td>2</td>
-      <td>0</td>
-      <td>31.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>781</td>
-      <td>21.0000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>189</th>
-      <td>1081</td>
-      <td>NaN</td>
-      <td>2</td>
-      <td>1</td>
-      <td>40.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>306</td>
-      <td>13.0000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>415</th>
-      <td>1307</td>
-      <td>NaN</td>
-      <td>3</td>
-      <td>1</td>
-      <td>38.5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>872</td>
-      <td>7.2500</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>380</th>
-      <td>381</td>
+      <th>849</th>
+      <td>850</td>
       <td>1.0</td>
       <td>1</td>
       <td>0</td>
-      <td>42.0</td>
+      <td>29.881138</td>
+      <td>1</td>
       <td>0</td>
-      <td>0</td>
-      <td>833</td>
-      <td>227.5250</td>
+      <td>108</td>
+      <td>89.1042</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>149</th>
-      <td>150</td>
+      <th>257</th>
+      <td>1149</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>1</td>
+      <td>28.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>586</td>
+      <td>8.0500</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>551</th>
+      <td>552</td>
       <td>0.0</td>
       <td>2</td>
       <td>1</td>
-      <td>42.0</td>
+      <td>27.000000</td>
       <td>0</td>
       <td>0</td>
-      <td>194</td>
-      <td>13.0000</td>
+      <td>196</td>
+      <td>26.0000</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>595</th>
-      <td>596</td>
-      <td>0.0</td>
+      <th>237</th>
+      <td>1129</td>
+      <td>NaN</td>
       <td>3</td>
       <td>1</td>
-      <td>36.0</td>
+      <td>20.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>274</td>
+      <td>7.2250</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>609</th>
+      <td>610</td>
+      <td>1.0</td>
       <td>1</td>
-      <td>425</td>
-      <td>24.1500</td>
+      <td>0</td>
+      <td>40.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>805</td>
+      <td>153.4625</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>437</th>
-      <td>438</td>
+      <th>706</th>
+      <td>707</td>
       <td>1.0</td>
       <td>2</td>
       <td>0</td>
-      <td>24.0</td>
+      <td>45.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>140</td>
+      <td>13.5000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>580</th>
+      <td>581</td>
+      <td>1.0</td>
       <td>2</td>
+      <td>0</td>
+      <td>25.000000</td>
+      <td>1</td>
+      <td>1</td>
+      <td>175</td>
+      <td>30.0000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>204</th>
+      <td>1096</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>1</td>
+      <td>25.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>765</td>
+      <td>10.5000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>244</th>
+      <td>245</td>
+      <td>0.0</td>
       <td>3</td>
-      <td>321</td>
-      <td>18.7500</td>
+      <td>1</td>
+      <td>30.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>289</td>
+      <td>7.2250</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>169</th>
+      <td>1061</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>0</td>
+      <td>22.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>696</td>
+      <td>8.9625</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
@@ -2598,8 +1590,8 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A função <em>get_dummies</em> do pandas permite fazer <em>one-hot encoding</em>, convertendo variáveis categóricas em variáveis indicadores (<em>dummy</em>).</p>
-<p>Observe, da saída resultante de sample(), que foram criadas variáveis adicionais derivadas de <em>Embarked</em>:</p>
+<p>Compare essa saída com a saída do penúltimo <em>sample()</em>.</p>
+<p>Observe, nessa última saída, que foram criadas variáveis adicionais derivadas de <em>Embarked</em>:</p>
 <ul>
 <li><em>Embarked_C</em>: indicando que o valor original era 'C';</li>
 <li><em>Embarked_Q</em>: indicando que o valor original era 'Q';</li>
@@ -2614,17 +1606,17 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Treinando-um-modelo">Treinando um modelo<a class="anchor-link" href="#Treinando-um-modelo">&#182;</a></h1><p>Agora podemos treinar o modelo. Vamos, primeiramente, separar novamente os data sets de treino e teste, conforme os arquivos originalmente nos fornecidos pelo Kaggle.</p>
+<h1 id="Treinando-um-modelo">Treinando um modelo<a class="anchor-link" href="#Treinando-um-modelo">&#182;</a></h1><p>Finalmente podemos treinar o modelo. Vamos, primeiramente, separar novamente os data sets de treino e teste, conforme os arquivos originalmente nos fornecidos pelo Kaggle.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_train</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">891</span><span class="p">]</span> <span class="c1"># o tamanho original do set de treino é 891</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_train</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">891</span><span class="p">]</span> <span class="c1"># o tamanho original do arquivo de treino é 891</span>
 <span class="n">df_test</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="mi">891</span><span class="p">:]</span>
 </pre></div>
 
@@ -2636,7 +1628,7 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A partir de agora, vamos utilizar o set de treino para fazer o treino do nosso modelo.</p>
+<p>A partir de agora, vamos utilizar o conjunto de treino para fazer o treino do nosso modelo.</p>
 
 </div>
 </div>
@@ -2650,7 +1642,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;PassengerId&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
@@ -2699,7 +1691,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
@@ -2719,18 +1711,20 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[25]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>RandomForestClassifier(bootstrap=True, class_weight=None, criterion=&#39;gini&#39;,
-            max_depth=None, max_features=&#39;auto&#39;, max_leaf_nodes=None,
-            min_impurity_decrease=0.0, min_impurity_split=None,
-            min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=100, n_jobs=None,
-            oob_score=False, random_state=42, verbose=0, warm_start=False)</pre>
+<pre>RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion=&#39;gini&#39;, max_depth=None, max_features=&#39;auto&#39;,
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=None, oob_score=False, random_state=42, verbose=0,
+                       warm_start=False)</pre>
 </div>
 
 </div>
@@ -2742,16 +1736,17 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>No trecho anterior, criamos um classificador do tipo RandomForest e em seguida chamamos o seu método <em>fit</em>, para fazer o treino do modelo - a construção das árvores, neste caso.</p>
+<p>No trecho anterior, criamos um classificador do tipo RandomForest e em seguida chamamos o seu método <em>fit</em>, para fazer o <strong>treino</strong> do modelo - a construção das árvores, neste caso.</p>
+<p>COLOCAR LINK RANDOM FOREST</p>
 <p>O primeiro argumento de <em>fit</em> é a entrada para o treino (X); o segundo argumento é a variável alvo (y).</p>
-<p>Agora vamos fazer a previsão do resultado.</p>
+<p>Agora vamos fazer a <strong>previsão</strong> do resultado.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
@@ -2767,6 +1762,7 @@ dtype: object</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A função <em>predict()</em> nos retorna os valores que queremos prever, neste caso, o valor de <em>Survived</em>.</p>
 <p>Esse é o padrão para treino de modelos utilizando scikit-learn: chamar <em>fit</em> para fazer o ajuste e depois <em>predict</em> para fazer a previsão.</p>
+<p>FIGURA FIT-PREDICT</p>
 <p>Vamos ver a acurácia das nossas previsões no dataset de treino.</p>
 
 </div>
@@ -2774,7 +1770,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
@@ -2792,7 +1788,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[27]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -2810,10 +1806,11 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Usamos como métrica a acurácia - essa é a métrica recomendada pelo Kaggle para esse problema. Fizemos uso do <em>accuracy_score</em> do scikit-learn; o seu primeiro argumento são os valores reais; o segundo argumento são os valores previstos.</p>
+<p>Usamos como métrica a acurácia - essa é a métrica recomendada pelo Kaggle para esse problema. Fizemos uso do <em>accuracy_score</em> do scikit-learn; o seu primeiro argumento são os valores reais; o segundo argumento são os valores previstos, obtidos como saída do classificador.</p>
 <p>Nesse caso, o modelo está conseguindo acertar 99% das previsões.</p>
-<p>O que fizemos até agora nos garante que o nosso modelo tem um ótimo desempenho nos dados conhecidos,  o conjunto de treino - quase 100%. No entanto, precisamos garantir que o modelo também se comporte bem para dados que ele ainda não conhece; em outras palavras, queremos um modelo que generalize bem para novos dados que lhe sejam apresentados - evitar o <strong>overfitting</strong>.</p>
-<p>Para avaliar quão bom é o desempenho do modelo treinado em dados desconhecidos, vamos separar o <em>dataset</em> de treino em 2 outros <em>datasets</em> separados: treino e teste.</p>
+<p>O que fizemos até agora nos garante que o nosso modelo tem um ótimo desempenho nos dados do conjunto de treino - quase 100%. Esse são os dados conhecidos.</p>
+<p>No entanto, precisamos garantir que o modelo também se comporte bem para dados que ele ainda não conhece; em outras palavras, queremos um modelo/classificador que generalize bem para novos dados que lhe sejam apresentados - evitar o <strong><em>overfitting</em></strong>.</p>
+<p>Para avaliar quão bom é o desempenho do modelo treinado em dados desconhecidos, vamos separar o conjunto de dados de treino em 2 outros conjuntos separados: treino e teste.</p>
 
 </div>
 </div>
@@ -2864,7 +1861,7 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Fizemos uso da função <em>train_test_split</em> do scikit-learn para separar, aleatoriamente, o dataset de treino df_train em outros dois datasets independentes: X_train e X_test.</p>
+<p>Fizemos uso da função <em>train_test_split</em> do scikit-learn para separar, aleatoriamente, o dataset de treino df_train em outros dois datasets independentes: X_train e X_test (80% dos dados vão ser usados para o treino; 20% para fazer o teste/validação do modelo).</p>
 <p>Agora, vamos treinar o modelo utilizando o X_train e avaliá-lo utilizando o X_test.</p>
 
 </div>
@@ -2908,9 +1905,9 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Como vemos, o desempenho no set de treino é bem maior do que no set de teste: 99% vs 80% - embora precisão de 80% seja um resultado razoável. O que está ocorrendo aqui é o <strong>overfitting</strong>.</p>
-<p>O <strong>overfitting</strong> ocorre quando o modelo captura bem as características presentes no set de treinamento, mas falha ao generalizar seu comportamento para dados que ele desconhece - fazendo uma analogia, é como se ele decorasse as características existentes, em vez de aprendê-la.</p>
-<p>Há diversas formas de tratar o overfitting, como melhora de hiperparâmetros, melhor tratamento de dados, etc. Não vamos entrar nesse tópico, para não fugir do escopo desse caderno, que é a criação de um classificador simples e rápido.</p>
+<p>Como vemos, o desempenho no set de treino é bem maior do que no set de teste: 99% vs 80% - embora precisão de 80% seja um resultado razoável. O que está ocorrendo aqui é o <strong><em>overfitting</em></strong>.</p>
+<p>O <strong><em>overfitting</em></strong> ocorre quando o modelo captura bem as características presentes no set de treinamento, mas falha ao generalizar seu comportamento para dados que ele desconhece - fazendo uma analogia, é como se ele decorasse as características existentes, em vez de aprendê-las.</p>
+<p>Há diversas formas de tratar o overfitting, como melhora de hiperparâmetros, melhor tratamento de dados, etc. Não vamos entrar nesse tópico, para não fugir do nosso objetivo, que é a criação de um classificador simples e rápido.</p>
 
 </div>
 </div>
@@ -2949,7 +1946,7 @@ dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f29d9b77240&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd97ed65650&gt;</pre>
 </div>
 
 </div>
@@ -2962,7 +1959,7 @@ dtype: object</pre>
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -2976,14 +1973,14 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Vamos fazer um classificador que, independentemente dos dados, sempre chuta que o passageiro vai sobreviver.</p>
+<p>Vamos fazer um classificador que, independentemente dos dados, sempre chuta que o passageiro vai morrer.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
@@ -3005,7 +2002,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[34]:</div>
+    <div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -3023,7 +2020,7 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Conforme podemos ver, a acurácia do classificador que sempre prevê o mesmo valor, é de 58.6% no dataset de treino. Logo, o nosso classificador baseado em RandomForest está bem melhor que esse.</p>
+<p>Conforme podemos ver, a acurácia do classificador que sempre prevê o mesmo valor, é de 58.6% nos dados de teste. Logo, o nosso classificador baseado em RandomForest está bem melhor que esse.</p>
 <p>Vamos fazer a análise final, que seria a submissão dos resultados para o Kaggle, baseado no arquivo com os dados de testes que nos foi fornecido (test.csv).</p>
 
 </div>
@@ -3038,11 +2035,11 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">output_predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_test</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
-<span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">output_predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output_predictions</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3058,13 +2055,25 @@ dtype: object</pre>
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/home/andrethiago/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0. 0. 0. 0. 1. 0. 0. 0. 1. 0. 0. 0. 1. 0. 1. 1. 0. 0. 0. 1. 0. 0. 1. 0.
+ 1. 0. 1. 0. 0. 0. 0. 0. 1. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 0. 0. 0.
+ 1. 1. 1. 0. 1. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 1. 0. 1. 1. 0. 0. 1. 1. 0.
+ 0. 0. 1. 0. 0. 1. 0. 1. 1. 0. 0. 0. 0. 0. 1. 0. 1. 1. 0. 0. 1. 0. 0. 0.
+ 1. 0. 0. 0. 1. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 1. 1. 0. 1. 0. 0. 1. 0. 1.
+ 1. 0. 1. 0. 0. 1. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0.
+ 1. 0. 1. 0. 0. 0. 1. 0. 0. 1. 0. 0. 1. 1. 1. 1. 1. 1. 1. 0. 0. 0. 0. 0.
+ 1. 0. 0. 0. 0. 0. 0. 1. 1. 1. 1. 1. 0. 0. 1. 0. 1. 0. 1. 0. 0. 0. 0. 0.
+ 0. 0. 1. 0. 1. 0. 0. 0. 1. 1. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0.
+ 1. 0. 1. 0. 1. 0. 1. 0. 1. 1. 0. 1. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 1. 1.
+ 1. 1. 0. 0. 0. 0. 1. 0. 1. 0. 1. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 1. 1.
+ 0. 0. 0. 0. 0. 0. 1. 0. 1. 1. 0. 1. 0. 0. 0. 0. 0. 1. 1. 1. 1. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 1. 0. 0. 0. 0.
+ 0. 1. 1. 1. 1. 0. 0. 0. 0. 0. 0. 0. 1. 0. 1. 0. 0. 0. 1. 0. 0. 1. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 1. 0. 1. 0. 1. 0. 1. 1. 0. 0. 0. 1. 0. 1. 0. 0. 1.
+ 0. 1. 1. 0. 1. 0. 0. 0. 1. 1. 0. 1. 0. 0. 1. 1. 0. 0. 0. 1. 0. 0. 1. 1.
+ 0. 1. 0. 0. 0. 0. 1. 1. 0. 0. 0. 1. 0. 1. 0. 0. 1. 0. 1. 0. 0. 0. 0. 0.
+ 1. 1. 1. 1. 0. 0. 1. 0. 0. 0.]
 </pre>
 </div>
 </div>
@@ -3075,368 +2084,40 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_ouput</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span> <span class="s1">&#39;PassengerId&#39;</span><span class="p">:</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;PassengerId&#39;</span><span class="p">],</span>
-                            <span class="s1">&#39;Survived&#39;</span><span class="p">:</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="p">},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">df_ouput</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">my_submission</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;PassengerId&#39;</span><span class="p">:</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;PassengerId&#39;</span><span class="p">],</span> <span class="s1">&#39;Survived&#39;</span><span class="p">:</span> <span class="n">output_predictions</span><span class="p">})</span>
+<span class="n">my_submission</span><span class="o">.</span><span class="n">Survived</span> <span class="o">=</span> <span class="n">my_submission</span><span class="o">.</span><span class="n">Survived</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># escrevendo o arquivo de saída</span>
+<span class="n">my_submission</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{PATH}</span><span class="s1">submission.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
 
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>PassengerId</th>
-      <th>Survived</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>892</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>893</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>894</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>895</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>896</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>897</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>898</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>899</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>900</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>901</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>902</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>903</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>904</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>905</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>906</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>907</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>908</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>909</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>910</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>911</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>912</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>913</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>914</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>915</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>916</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>917</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>918</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>919</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>920</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>921</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>388</th>
-      <td>1280</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>389</th>
-      <td>1281</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>390</th>
-      <td>1282</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>391</th>
-      <td>1283</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>392</th>
-      <td>1284</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>393</th>
-      <td>1285</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>394</th>
-      <td>1286</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>395</th>
-      <td>1287</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>396</th>
-      <td>1288</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>397</th>
-      <td>1289</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>398</th>
-      <td>1290</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>399</th>
-      <td>1291</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>400</th>
-      <td>1292</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>401</th>
-      <td>1293</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>402</th>
-      <td>1294</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>403</th>
-      <td>1295</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>404</th>
-      <td>1296</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>405</th>
-      <td>1297</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>406</th>
-      <td>1298</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>407</th>
-      <td>1299</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>408</th>
-      <td>1300</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>409</th>
-      <td>1301</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>410</th>
-      <td>1302</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>411</th>
-      <td>1303</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>412</th>
-      <td>1304</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>413</th>
-      <td>1305</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>414</th>
-      <td>1306</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>415</th>
-      <td>1307</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>416</th>
-      <td>1308</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>417</th>
-      <td>1309</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>418 rows × 2 columns</p>
+    </div>
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pronto. O arquivo está pronto para ser enviado para o Kaggle.</p>
+<p><strong>Nota</strong>: A título de curiosidade, o score desse classificador no Kaggle foi 0.7751. Ou seja, acurácia de 77.5%. Cabe lembrar que não fizemos nenhuma otimização no nosso classificador. Apenas tratamos os dados e fizemos a classificação. Então é um resultado bastante aceitável para uma primeira experiência.</p>
 
 </div>
 </div>
-
 </div>
  
 
@@ -3470,33 +2151,40 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 }
 </script>
 
-    </div><!-- /.entry-content -->
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/kaggle.html">kaggle</a>
+      <a href="http://localhost:8000/tag/classificador.html">classificador</a>
+      <a href="http://localhost:8000/tag/primeiros-passos.html">primeiros-passos</a>
+    </p>
+  </div>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
-        </footer><!-- /#contentinfo -->
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Robô Aprendiz ",
+  "url" : "http://localhost:8000",
+  "image": "http://localhost:8000/images/artificial-intelligence.png",
+  "description": "Robô Aprendiz - Aprendizagem de máquina com técnicas de IA"
+}
+</script>
+
 
 </body>
 </html>
